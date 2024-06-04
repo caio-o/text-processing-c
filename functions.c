@@ -30,3 +30,31 @@ int leArquivo(char *nome, char **buffer)
 
 	return tam;
 }
+
+textoInv leArquivoInv(char *nome)
+{
+        FILE *arquivo = fopen("Historia.txt", "r");
+
+        char *vocabulo = []
+
+        char c;
+        int i = 0;
+
+        while (c != ' ' && cont < 100)
+        {
+                /// checar se a palavra eh pontuacao
+                c = fgetc(arquivo);
+                
+                vocabulo [i] = c
+
+                if (ehPont (c))
+                {
+                        vocabulo[i] = '\0';
+                        guardaPont(c);
+                }
+
+                fscanf(arquivo, "%[^!-/:;]", vocabulo);
+
+                i++;
+        }
+}
