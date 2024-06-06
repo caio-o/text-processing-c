@@ -2,6 +2,29 @@
 #include <stdlib.h>
 #include "headers.h"
 
+int letraOuNumero(char c)
+{
+	return ((65 <= c && c <= 90) || (97 <= c && c <= 122) || (48 <= c && c <= 57) || (c == '-') || (c == '_') || (192 <= c));
+}
+
+char* extraiPalavra (char *buffer, int i, int j)
+{
+	char *ret = (char*) malloc (sizeof(char) * (j - i + 1));
+	int tam = j - i + 1;
+
+	for(int k = 0; k < tam; k++)
+	{
+		if(65 <= buffer[i] && buffer[i] <= 90) 
+			ret[k] = buffer[i] + 32;
+		else
+			ret[k] = buffer[i];
+
+		i++;
+	}
+
+	return ret;
+}
+
 void imprimeParte(char *buff, int i, int j)
 {
 	for (i = i; i <= j; i++)
@@ -14,7 +37,7 @@ void imprimeParte(char *buff, int i, int j)
 
 int leArquivo(char *nome, char **buffer)
 {
-	FILE *arquivo = fopen("Historia.txt", "r");
+	FILE *arquivo = fopen(nome, "r");
 	int tam;
 
 	fseek (arquivo, 0L, SEEK_END);
@@ -31,30 +54,3 @@ int leArquivo(char *nome, char **buffer)
 	return tam;
 }
 
-textoInv leArquivoInv(char *nome)
-{
-        FILE *arquivo = fopen("Historia.txt", "r");
-
-        char *vocabulo = []
-
-        char c;
-        int i = 0;
-
-        while (c != ' ' && cont < 100)
-        {
-                /// checar se a palavra eh pontuacao
-                c = fgetc(arquivo);
-                
-                vocabulo [i] = c
-
-                if (ehPont (c))
-                {
-                        vocabulo[i] = '\0';
-                        guardaPont(c);
-                }
-
-                fscanf(arquivo, "%[^!-/:;]", vocabulo);
-
-                i++;
-        }
-}
