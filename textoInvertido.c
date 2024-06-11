@@ -31,12 +31,16 @@ void buscaImprime (const char *str, textoInv *txt, const char *buffer)
 
 		do 
 		{
-			printf("Ocorrencia %d/%d, na posicao %d:\n", cont, tam, at->pos);
+			printf("Ocorrencia %d/%d, na posicao %d:\n\n", cont, tam, at->pos);
 
 			imprimeParte(buffer, at->pos - 50, at->pos + 50);
+			//imprimeSetinha (menorDoPar (50, at->pos));
+
+			printf("\nEscolha: [1] Ver prox. ocorrencia.    [2] Terminar busca.\n");
 			
-			printf("Escolha: [1] Ver prox. ocorrencia.    [2] Terminar busca.\n");
-			do scanf("%d", &input); while (input < 1 || input > 2);
+			do scanf("%d", &input); 
+			while (input < 1 || input > 2);
+			
 			if (input == 2) break;
 
 			at = at->prox;
@@ -56,17 +60,9 @@ struct vocabulo* busca (const char *str, textoInv *txt)
 {
 	struct vocabulo *at = txt->head;
 
-	if(txt->head == NULL)
+	while(at != NULL && strcmp(at->str, str) != 0)
 	{
-		return NULL;
-	}
-
-	else
-	{
-		while(at->prox != NULL && strcmp(at->str, str) != 0)
-		{
-			at = at->prox;
-		}
+		at = at->prox;
 	}
 
 	return at;
