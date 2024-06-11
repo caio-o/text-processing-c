@@ -42,10 +42,19 @@ struct ocorrencia* criaOcorrencia (int pos)
 
 struct vocabulo* criaVocabulo(const char *str, int pos)
 {
+	int i;
+	//int sz = strlen(str)+1;
 	struct vocabulo *ret = (struct vocabulo*) malloc (sizeof(struct vocabulo));
 
-	ret->str = strdup(str);
+	//ret->str = (char*) malloc (sz * sizeof(char));   //strdup(str);
 	ret->prox = NULL;
+
+	/*for(i = 0; i < sz; i ++)
+	{
+		ret->str[i] = str[i];
+	}*/
+
+	ret->str = strdup(str);
 
 	ret->ocorrencias = (listaOcorrencias*) malloc (sizeof(listaOcorrencias));
 	ret->ocorrencias->head = criaOcorrencia(pos);
@@ -107,7 +116,9 @@ textoInv* criaTextoInv (char *buffer, int tam)
 		do j++; while (letraOuNumero (buffer[i]) && j < tam && letraOuNumero (buffer[j]));
 
 		if (buffer[i] != '\n')
+		{
 			adVocabulo (extraiPalavra (buffer, i, j-1), i, &(txt->head));
+		}
 
 		i = j;
 	}
