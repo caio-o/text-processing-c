@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include "headers.h"
 #include "textoInvertido.h"
+#define FILE_NAME "Historia.txt"
 
 int main (void)
 {
 	int tam;
 	struct vocabulo **pHead;
 	char *buffer;
-	tam = leArquivo("teste.txt", &buffer);
+	tam = leArquivo(FILE_NAME, &buffer);
 	
 	textoInv *txt = criaTextoInv(buffer, tam);
 
@@ -19,7 +20,7 @@ int main (void)
 
 	imprimeTextoInv(txt);
 
-	printf("\nTAIL: ");
+	printf("\n(teste) TAIL: ");
 	imprimeVocabulo(txt->tail);
 
 	destroiTextoInv (txt);
