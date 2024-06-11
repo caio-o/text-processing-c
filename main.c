@@ -19,6 +19,7 @@ int main (void)
 	}
 
 	imprimeTextoInv(txt);
+	salvaTextoInv(txt, "arquivo-invertido.txt");
 
 	//teste = busca("beto", txt);
 	

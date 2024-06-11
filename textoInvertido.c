@@ -242,14 +242,15 @@ void destroiVocabulo (struct vocabulo *voc)
 void salvaTextoInv (textoInv *txt, char *nomeDoArquivo)
 {
 	FILE *tmp = stdout;
+	FILE *tmp2 = fopen(nomeDoArquivo, "w");
 
-	stdout = fopen(nomeDoArquivo, "w");
+	stdout = tmp2;
 
 	imprimeTextoInv(txt);
 
-	fclose(stdout);
-
 	stdout = tmp;
+
+	fclose(tmp2);
 }
 
 void imprimeVocabulo (struct vocabulo *v)
