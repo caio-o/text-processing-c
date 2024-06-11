@@ -27,7 +27,7 @@ char* extraiPalavra (char *buffer, int i, int j)
 	return ret;
 }
 
-void imprimeParte(char *buff, int i, int j)
+void imprimeParte(const char *buff, int i, int j)
 {
 	for (i = i; i <= j; i++)
 	{

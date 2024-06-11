@@ -3,6 +3,75 @@
 #include <string.h>
 #include <stdlib.h>
 
+int nOcorrencias (struct vocabulo *v)
+{
+	int ret = 1;
+	struct ocorrencia *at = v->ocorrencias->head;
+	while (at->prox != NULL)
+	{
+		at = at->prox;
+		ret++;
+	}
+
+	return ret;
+}
+
+void buscaImprime (const char *str, textoInv *txt, const char *buffer)
+{
+	struct vocabulo *v = busca (str, txt);
+
+	if (v != NULL)
+	{
+		struct ocorrencia *at = v->ocorrencias->head;
+		int tam = nOcorrencias(v);
+		int cont = 1;
+		int input = 0;
+
+		printf("Encontrado: %s, com %d ocorrencias totais.\n", v->str, tam);
+
+		do 
+		{
+			printf("Ocorrencia %d/%d, na posicao %d:\n", cont, tam, at->pos);
+
+			imprimeParte(buffer, at->pos - 50, at->pos + 50);
+			
+			printf("Escolha: [1] Ver prox. ocorrencia.    [2] Terminar busca.\n");
+			do scanf("%d", &input); while (input < 1 || input > 2);
+			if (input == 2) break;
+
+			at = at->prox;
+			cont++;
+		} while (cont <= tam);	
+
+		printf("Fim da busca.\n");
+	}
+	else
+	{
+		printf("Nao encontrado.\n");
+	}
+
+}
+
+struct vocabulo* busca (const char *str, textoInv *txt)
+{
+	struct vocabulo *at = txt->head;
+
+	if(txt->head == NULL)
+	{
+		return NULL;
+	}
+
+	else
+	{
+		while(at->prox != NULL && strcmp(at->str, str) != 0)
+		{
+			at = at->prox;
+		}
+	}
+
+	return at;
+}
+
 void atualizaTail (textoInv *txt)
 {
 	if (txt->head == NULL)

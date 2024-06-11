@@ -26,6 +26,8 @@ typedef struct
 	struct vocabulo *tail;
 } textoInv;
 
+void buscaImprime (const char *str, textoInv *txt, const char *buffer);
+struct vocabulo* busca (const char* str, textoInv *txt);
 
 void atualizaTail (textoInv *txt);
 

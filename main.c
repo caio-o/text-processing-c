@@ -7,7 +7,7 @@
 int main (void)
 {
 	int tam;
-	struct vocabulo **pHead;
+	//struct vocabulo *teste;
 	char *buffer;
 	tam = leArquivo(FILE_NAME, &buffer);
 	
@@ -20,8 +20,12 @@ int main (void)
 
 	imprimeTextoInv(txt);
 
-	printf("\n(teste) TAIL: ");
-	imprimeVocabulo(txt->tail);
+	//teste = busca("beto", txt);
+	
+	printf("\n\n\n\n        BUSCA SEQUENCIAL DE quem: \n");
+	//if (teste != NULL) imprimeVocabulo(teste);
+	//else printf("\"beto\" NAO ENCONTRADO!\n");
+	buscaImprime("quem", txt, buffer);
 
 	destroiTextoInv (txt);
 
