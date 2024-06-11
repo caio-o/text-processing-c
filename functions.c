@@ -56,3 +56,21 @@ int leArquivo(char *nome, char **buffer)
 	return tam;
 }
 
+int menorDoPar (int a, int b)
+{
+	if (a < b)    return a;
+	else          return b;
+}
+
+void imprimeSetinha (int pos)
+{
+	char *str = (char*) malloc ((pos+1) * sizeof(char));
+
+	for(int i = 0; i < pos; i ++)
+	{
+		str[i] = ' ';
+	}
+
+	str[pos] = '^';
+	str[pos+1] = '\0';	
+}
