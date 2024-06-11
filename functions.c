@@ -9,18 +9,20 @@ int letraOuNumero(char c)
 
 char* extraiPalavra (char *buffer, int i, int j)
 {
-	char *ret = (char*) malloc (sizeof(char) * (j - i + 1));
+	char *ret = (char*) malloc (sizeof(char) * (j - i + 2));
 	int tam = j - i + 1;
 
 	for(int k = 0; k < tam; k++)
 	{
-		if(65 <= buffer[i] && buffer[i] <= 90) 
+		if ('A' <= buffer[i] && buffer[i] <= 'Z') 
 			ret[k] = buffer[i] + 32;
 		else
 			ret[k] = buffer[i];
 
 		i++;
 	}
+
+	ret[tam] = '\0';
 
 	return ret;
 }
