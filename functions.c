@@ -4,7 +4,7 @@
 
 int letraOuNumero(char c)
 {
-	return ((65 <= c && c <= 90) || (97 <= c && c <= 122) || (48 <= c && c <= 57) || (c == '-') || (c == '_') || (192 <= c));
+	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9') || (c == '-') || (c == '_') || ((char)127 < c));
 }
 
 char* extraiPalavra (char *buffer, int i, int j)
