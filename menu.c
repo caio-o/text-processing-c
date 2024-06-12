@@ -45,10 +45,11 @@ void menuPrincipal (void)
 		printf("[1] Ler arquivo e fazer arquivo invertido.\n");
 		printf("[2] Mostrar arquivo invertido.\n");
 		printf("[3] Buscar palavra.\n");
-		printf("[4] Sair.\n");
+		printf("[4] Salvar arquivo invertido em txt.\n");
+		printf("[5] Sair.\n");
 
 		do scanf("%d", &input);
-		while (input < 1 || input > 4);
+		while (input < 1 || input > 5);
 
 		switch (input)
 		{
@@ -80,11 +81,20 @@ void menuPrincipal (void)
 			else printf("Nao ha texto.\n");
 			break;
 
+		case 4:
+			if(txt != NULL)
+			{
+				salvaTextoInv(txt, "arquivo-invertido.txt");
+				printf("Salvo em arquivo-invertido.txt\n");
+			}
+			else printf("Nao ha texto.\n");
+			break;
+
 		default:
 			if    (txt    != NULL)    destroiTextoInv (txt);
 			if    (buffer != NULL)    free (buffer);
 			break;
 		}
 		espera(N_ENTER);
-	} while (input != 4);
+	} while (input != 5);
 }
