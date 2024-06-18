@@ -1,5 +1,5 @@
 #include "textoInvertido.h"
-#include "headers.h"
+#include "textoBruto.h"
 
 //colocar isso em textoInvertido.c
 int wordFrequencyFromString (const char *str, textoInv *txt)
