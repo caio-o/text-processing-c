@@ -1,9 +1,9 @@
-/*************************************************************/
-/**   HEADER que declara todas as funcoes do programa.       */
-/*************************************************************/
+/*************************************************************************/
+/**   HEADER que declara todas as funcoes que lidam com texto bruto.     */
+/*************************************************************************/
 
-#ifndef __HEADERS_H
-#define __HEADERS_H
+#ifndef __TEXTO_BRUTO
+#define __TEXTO_BRUTO
 
 void imprimeParte(const char *buff, int i, int j);
 
