@@ -44,12 +44,13 @@ void menuPrincipal (void)
 		printf("Escolha:\n");
 		printf("[1] Ler arquivo e fazer arquivo invertido.\n");
 		printf("[2] Mostrar arquivo invertido.\n");
-		printf("[3] Buscar palavra.\n");
+		printf("[3] Buscar palavra no arquivo invertido.\n");
 		printf("[4] Salvar arquivo invertido em txt.\n");
-		printf("[5] Sair.\n");
+		printf("[5] Buscar palavra por forca bruta.\n");
+		printf("[6] Sair.\n");
 
 		do scanf("%d", &input);
-		while (input < 1 || input > 5);
+		while (input < 1 || input > 6);
 
 		switch (input)
 		{
@@ -90,11 +91,20 @@ void menuPrincipal (void)
 			else printf("Nao ha texto.\n");
 			break;
 
+		case 5:
+			if(buffer != NULL)
+			{
+				scanf("%s", nome);
+
+				buscaForcaBruta(nome, strlen(nome), buffer, tam);
+			}
+			break;
+
 		default:
 			if    (txt    != NULL)    destroiTextoInv (txt);
 			if    (buffer != NULL)    free (buffer);
 			break;
 		}
 		espera(N_ENTER);
-	} while (input != 5);
+	} while (input != 6);
 }

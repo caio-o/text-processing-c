@@ -74,3 +74,23 @@ void imprimeSetinha (int pos)
 	str[pos] = '^';
 	str[pos+1] = '\0';	
 }
+
+void buscaForcaBruta(const char *padrao, int m, const char *texto, int n)
+{
+	int i;
+	int j;
+	int k;
+
+	for (i = 0; i < (n - m); i++)
+	{ 
+		j = 0;
+		k = i;
+
+		while(j < m && padrao[j] == texto[k])
+		{
+			j++;
+			k++;
+		}
+		if(j == m) printf("Padrao encontrado na posicao: %3d\n", i);
+	}
+}
