@@ -1,5 +1,5 @@
 #include "textoInvertido.h"
-#include "headers.h"
+#include "textoBruto.h"
 #include <string.h>
 #include <stdlib.h>
 
