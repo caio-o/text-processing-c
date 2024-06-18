@@ -62,19 +62,6 @@ int menorDoPar (int a, int b)
 	else          return b;
 }
 
-void imprimeSetinha (int pos)
-{
-	char *str = (char*) malloc ((pos+1) * sizeof(char));
-
-	for(int i = 0; i < pos; i ++)
-	{
-		str[i] = ' ';
-	}
-
-	str[pos] = '^';
-	str[pos+1] = '\0';	
-}
-
 void buscaForcaBruta(const char *padrao, int m, const char *texto, int n)
 {
 	int i;

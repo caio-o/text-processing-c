@@ -7,8 +7,6 @@
 
 void imprimeParte(const char *buff, int i, int j);
 
-void imprimeSetinha(int pos);
-
 void buscaForcaBruta(const char *padrao, int m, const char *texto, int n);
 
 int leArquivo (char *nome, char **buffer);
