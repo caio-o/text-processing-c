@@ -7,14 +7,14 @@
 #ifdef LINUX
 void limpaTela (void)
 {
-	system("clear");
+	system("clear"); // Para terminais rodando em Shell e derivados, como o do LINUX e do BSD
 }
 #endif
 
 #ifndef LINUX
 void limpaTela (void)
 {
-	system("cls");
+	system("cls"); // Para o cmd do WINDOWS
 }
 #endif
 
@@ -25,36 +25,52 @@ void espera (int n)
 	printf("\n----------------------------\n");
 
 	for(int i = 0; i < n; i ++) 
-		getchar();
+		getchar(); // Espera input do usuario
 }
 
-void menuPrincipal (void)
+// AVISO: Manter sempre compativel com o enum OpcaoDoMenu, definido em menu.h
+void imprimeMenuPrincipal (void)
 {
-	int input;
-	char nome[127];
+	printf ("Escolha:\n");
+	printf ("[1] Ler arquivo e fazer arquivo invertido.\n");
+	printf ("[2] Mostrar arquivo invertido.\n");
+	printf ("[3] Buscar palavra no arquivo invertido.\n");
+	printf ("[4] Salvar arquivo invertido em txt.\n");
+	printf ("[5] Buscar palavra por forca bruta.\n");
+	printf ("[6] Sair.\n");
+}
+
+OpcaoDoMenu escolhaDoUsuario (void)
+{
+	OpcaoDoMenu escolha;
+
+	do    scanf ("%d", &escolha);
+	while (escolha < 1 || escolha > SAIR);
+
+	return escolha;
+}
+
+void executaMenuPrincipal (void)
+{
+	OpcaoDoMenu inputMenu;           // Inteiro que representa escolha do usuario
 	
-	int tam;
-	char *buffer = NULL;
-	textoInv *txt = NULL;
+	char nome[127];                  // Para ler o nomes de arquivos e padroes buscados
+	
+	int        tam;                  // tamanho do buffer em caracteres ou bytes
+	char       *buffer   = NULL;     // Buffer do texto bruto a ser lido
+	textoInv   *txt      = NULL;     // Arquivo invertido gerado a partir do texto
 
 	do
 	{
 		limpaTela();
 
-		printf("Escolha:\n");
-		printf("[1] Ler arquivo e fazer arquivo invertido.\n");
-		printf("[2] Mostrar arquivo invertido.\n");
-		printf("[3] Buscar palavra no arquivo invertido.\n");
-		printf("[4] Salvar arquivo invertido em txt.\n");
-		printf("[5] Buscar palavra por forca bruta.\n");
-		printf("[6] Sair.\n");
+		imprimeMenuPrincipal();
 
-		do scanf("%d", &input);
-		while (input < 1 || input > 6);
+		inputMenu = escolhaDoUsuario();
 
-		switch (input)
+		switch (inputMenu)
 		{
-		case 1:
+		case FAZER_ARQ_INV:
 			printf("Digite o nome do arquivo:\n");
 			scanf("%s", nome);
 		
@@ -65,14 +81,12 @@ void menuPrincipal (void)
 			printf("Feito!\n");
 			break;
 
-		case 2:
-			if(txt != NULL)
-				imprimeTextoInv (txt);
-			else
-				printf("Nao ha texto.\n");
+		case MOSTRAR_ARQ_INV:
+			if     (txt != NULL)   imprimeTextoInv (txt);
+			else                   printf("Nao ha texto.\n");
 			break;
 
-		case 3:
+		case BUSCAR_NO_ARQ_INV:
 			if(txt != NULL)
 			{
 				printf("Digite a palavra buscada: ");
@@ -82,29 +96,29 @@ void menuPrincipal (void)
 			else printf("Nao ha texto.\n");
 			break;
 
-		case 4:
-			if(txt != NULL)
+		case SALVAR_ARQ_INV:
+			if (txt != NULL)
 			{
-				salvaTextoInv(txt, "arquivo-invertido.txt");
-				printf("Salvo em arquivo-invertido.txt\n");
+				salvaTextoInv (txt, "arquivo-invertido.txt");
+				printf ("Salvo em arquivo-invertido.txt\n");
 			}
-			else printf("Nao ha texto.\n");
+			else printf ("Nao ha texto.\n");
 			break;
 
-		case 5:
-			if(buffer != NULL)
+		case FORCA_BRUTA:
+			if (buffer != NULL)
 			{
-				scanf("%s", nome);
+				scanf ("%s", nome);
 
-				buscaForcaBruta(nome, strlen(nome), buffer, tam);
+				buscaForcaBruta (nome, strlen(nome), buffer, tam);
 			}
 			break;
 
-		default:
-			if    (txt    != NULL)    destroiTextoInv (txt);
-			if    (buffer != NULL)    free (buffer);
+		default: // CASE SAIR:
+			if    (txt    != NULL)    destroiTextoInv  (txt);
+			if    (buffer != NULL)    free             (buffer);
 			break;
 		}
 		espera(N_ENTER);
-	} while (input != 6);
+	} while (inputMenu != SAIR);
 }
