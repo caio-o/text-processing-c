@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
+#include "textoBruto.h"
 #include "textoInvertido.h"
 #include "menu.h"
 
