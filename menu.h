@@ -1,3 +1,9 @@
+/************************************************************************/
+/**  Este arquivo contem a declaracao das funcoes para a               **/
+/**  a interacao com o usuario, notoriamente pelo menu principal;      **/
+/**  as quais funcoes estao implementadas em menu.h.                   **/
+/************************************************************************/
+
 #ifndef __MENU_H
 #define __MENU_H
 

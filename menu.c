@@ -1,3 +1,9 @@
+/************************************************************************/
+/**  Este arquivo contem a implementacao das funcoes para a            **/
+/**  a interacao com o usuario, notoriamente pelo menu principal;      **/
+/**  as quais funcoes estao declaradas e documentadas em menu.h        **/
+/************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "textoBruto.h"
@@ -28,7 +34,7 @@ void espera (int n)
 		getchar(); // Espera input do usuario
 }
 
-// AVISO: Manter sempre compativel com o enum OpcaoDoMenu, definido em menu.h
+// AVISO: Manter a declaracao abaixo sempre compativel com o enum OpcaoDoMenu, definido em menu.h
 void imprimeMenuPrincipal (void)
 {
 	printf ("Escolha:\n");
@@ -60,7 +66,7 @@ void executaMenuPrincipal (void)
 	char       *buffer   = NULL;     // Buffer do texto bruto a ser lido
 	textoInv   *txt      = NULL;     // Arquivo invertido gerado a partir do texto
 
-	do
+	do // while (inputMenu != SAIR)
 	{
 		limpaTela();
 
@@ -119,6 +125,7 @@ void executaMenuPrincipal (void)
 			if    (buffer != NULL)    free             (buffer);
 			break;
 		}
+
 		espera(N_ENTER);
 	} while (inputMenu != SAIR);
 }
