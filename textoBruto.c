@@ -1,3 +1,9 @@
+/****************************************************************************/
+/**  Este arquivo contem a implementacao das funcoes que                   **/
+/**  lidam com o processamento, a busca e a impressao do texto bruto       **/
+/**  as quais funcoes estao declaradas e documentadas em textoBruto.h      **/
+/****************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "textoBruto.h"
@@ -9,27 +15,29 @@ int letraOuNumero(char c)
 
 char* extraiPalavra (char *buffer, int i, int j)
 {
-	char *ret = (char*) malloc (sizeof(char) * (j - i + 2));
+	char *ret = (char*) malloc (sizeof(char) * (j - i + 2)); // +2 para dar espaco para o '\0'
 	int tam = j - i + 1;
 
 	for(int k = 0; k < tam; k++)
 	{
-		if ('A' <= buffer[i] && buffer[i] <= 'Z') 
-			ret[k] = buffer[i] + 32;
-		else
-			ret[k] = buffer[i];
+		if ('A' <= buffer[i] && buffer[i] <= 'Z') // Se eh letra maiuscula,
+			ret[k] = buffer[i] + 32;          // copia como minuscula;           TODO: MAKE IT WORK WITH UNICODE
+		else                                      // senao
+			ret[k] = buffer[i];               // copia o caracter como esta.
 
 		i++;
 	}
 
-	ret[tam] = '\0';
+	ret[tam] = '\0'; // a string retornada termina em '\0' para poder usar strdup(), strcpy(), etc.
 
 	return ret;
 }
 
 void imprimeParte(const char *buff, int i, int j)
 {
-	for (i = i; i <= j; i++)
+	// TODO: TESTAR - talvez seja mais rapido copiar para uma string (depois de colocar '0') e imprimir como %s
+	//                a depender do tamanho do intervalo a ser imprimido.
+	for (/* i = i */ ; i <= j; i++)
 	{
 		printf("%c", buff[i]);
 	}
@@ -49,9 +57,9 @@ int leArquivo(char *nome, char **buffer)
 
 	rewind (arquivo);
 
-	fread(*buffer, sizeof(char), tam, arquivo);
+	fread (*buffer, sizeof(char), tam, arquivo);
 
-	fclose(arquivo);
+	fclose (arquivo);
 
 	return tam;
 }
@@ -62,22 +70,23 @@ int menorDoPar (int a, int b)
 	else          return b;
 }
 
-void buscaForcaBruta(const char *padrao, int m, const char *texto, int n)
+void buscaForcaBruta(const char *padrao, int tamP, const char *texto, int tamT)
 {
 	int i;
 	int j;
 	int k;
 
-	for (i = 0; i < (n - m); i++)
+	for (i = 0; i < (tamT - tamP + 1); i++)
 	{ 
 		j = 0;
 		k = i;
 
-		while(j < m && padrao[j] == texto[k])
+		while(j < tamP && padrao[j] == texto[k])
 		{
 			j++;
 			k++;
 		}
-		if(j == m) printf("Padrao encontrado na posicao: %3d\n", i);
+
+		if(j >= m) printf("Padrao encontrado na posicao: %3d\n", i);
 	}
 }
