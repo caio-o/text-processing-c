@@ -7,9 +7,13 @@
 #ifndef __TEXTO_BRUTO
 #define __TEXTO_BRUTO
 
-void imprimeParte(const char *buff, int i, int j);
+// E N T R A D A: texto (*buffer), posicoes <i> e <j>.
+// PROCESSAMENTO: Imprime a parte do buffer que vai de <i> a <j>.
+void imprimeParte(const char *buffer, int i, int j);
 
-void buscaForcaBruta(const char *padrao, int m, const char *texto, int n);
+// ENTRADA......: padrao (string) buscado, texto em que sera buscado, e seus tamanhos.
+// PROCESSAMENTO: Imprime as posicoes em que o padrao ocorre no texto. 
+void buscaForcaBruta(const char *padrao, int tamP, const char *texto, int tamT);
 
 // E N T R A D A: nome de um arquivo, ponteiro para um buffer a ser alocado
 // PROCESSAMENTO: Guarda o conteudo do arquivo chamado <nome> em <*buffer>, apos este ter sido alocado.
