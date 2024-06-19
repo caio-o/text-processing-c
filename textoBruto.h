@@ -1,6 +1,8 @@
-/*************************************************************************/
-/**   HEADER que declara todas as funcoes que lidam com texto bruto.     */
-/*************************************************************************/
+/***********************************************************************/
+/**  Este arquivo contem a declaracao das funcoes que lidam com       **/
+/**  operacoes como a busca e a impressao do texto bruto,             **/
+/**  as quais funcoes estao implementadas em textoBruto.c             **/
+/***********************************************************************/
 
 #ifndef __TEXTO_BRUTO
 #define __TEXTO_BRUTO
