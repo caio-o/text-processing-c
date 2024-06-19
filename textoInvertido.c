@@ -2,6 +2,7 @@
 #include "textoBruto.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int nOcorrencias (struct vocabulo *v)
 {
@@ -108,16 +109,9 @@ struct ocorrencia* criaOcorrencia (int pos)
 struct vocabulo* criaVocabulo(const char *str, int pos)
 {
 	int i;
-	//int sz = strlen(str)+1;
 	struct vocabulo *ret = (struct vocabulo*) malloc (sizeof(struct vocabulo));
 
-	//ret->str = (char*) malloc (sz * sizeof(char));   //strdup(str);
 	ret->prox = NULL;
-
-	/*for(i = 0; i < sz; i ++)
-	{
-		ret->str[i] = str[i];
-	}*/
 
 	ret->str = strdup(str);
 

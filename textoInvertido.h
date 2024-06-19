@@ -11,7 +11,7 @@ typedef struct
 {	
 	struct ocorrencia *head;
 	struct ocorrencia *tail;
-	} listaOcorrencias;
+} listaOcorrencias;
 
 struct vocabulo
 {	
