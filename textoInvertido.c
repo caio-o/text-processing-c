@@ -122,21 +122,25 @@ struct vocabulo* criaVocabulo(const char *str, int pos)
 	return ret;
 }
 
+// TODO: revisar e simplificar funcao
 void adVocabulo(const char *str, int pos, struct vocabulo **head)
 {
-	struct vocabulo *novoNodo = criaVocabulo(str, pos);
-
+	struct vocabulo *aux = criaVocabulo(str, pos); // vai receber o novo nodo quando for necessario
+	
+	// para contemplar o caso em que a palavra esta no comeco do arquivo
 	if (*head == NULL || strcmp ((*head)->str, str) > 0)
 	{
-		novoNodo->prox = (*head);
+		aux = criaVocabulo(str, pos);
+		aux->prox = (*head);
+
 		*head = novoNodo;
 	}
-	else if (strcmp ((*head)->str, str) == 0) // TODO: CONSERTAR CHECAGEM DUPLA
+	else if (!strcmp ((*head)->str, str)) // se as palavras sao iguais
 	{
-		destroiVocabulo (novoNodo);
-
-		adOcorrencia (pos, (*head)->ocorrencias);
+		adOcorrencia (pos, (*head)->ocorrencias); // adicionar ocorrencia apenas
 	}
+
+	// para contemplar os outros casos
 	else
 	{
 		struct vocabulo *at = *head;
@@ -148,15 +152,18 @@ void adVocabulo(const char *str, int pos, struct vocabulo **head)
 
 		if (at->prox != NULL && strcmp(at->prox->str, str) == 0)
 		{
-			destroiVocabulo (novoNodo);
+			//destroiVocabulo (novoNodo);
 
-			adOcorrencia (pos, at->prox->ocorrencias); // Palavra ja encontrada antes. Registrar posicao da nova ocorrencia apenas.
+			// Palavra ja encontrada antes. Registrar posicao da nova ocorrencia apenas.
+			adOcorrencia (pos, at->prox->ocorrencias); 
 		}
 
 		else
 		{
-			novoNodo->prox = at->prox;
-			at->prox = novoNodo;
+			aux = criaVocabulo (str, pos);
+			aux->prox = at->prox;
+			
+			at->prox = aux;
 		}
 	}
 }

@@ -50,8 +50,8 @@ OpcaoDoMenu escolhaDoUsuario (void)
 {
 	OpcaoDoMenu escolha;
 
-	do    scanf ("%d", &escolha);
-	while (escolha < 1 || escolha > SAIR);
+	do    scanf ("%d", &escolha);          // Continua esperando input
+	while (escolha < 1 || escolha > SAIR); // enquanto <escolha> NAO for uma opcao existente no menu.
 
 	return escolha;
 }
