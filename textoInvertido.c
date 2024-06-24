@@ -35,18 +35,15 @@ void buscaImprime (const char *str, textoInv *txt, const char *buffer)
 			printf("Ocorrencia %d/%d, na posicao %d:\n\n", cont, tam, at->pos);
 
 			imprimeParte(buffer, at->pos - 50, at->pos + 50);
-			//imprimeSetinha (menorDoPar (50, at->pos));
 
 			printf("\nEscolha: [1] Ver prox. ocorrencia.    [2] Terminar busca.\n");
 			
 			do scanf("%d", &input); 
 			while (input < 1 || input > 2);
 			
-			if (input == 2) break;
-
 			at = at->prox;
 			cont++;
-		} while (cont <= tam);	
+		} while (cont <= tam && input != 2);	
 
 		printf("Fim da busca.\n");
 	}
@@ -133,7 +130,7 @@ void adVocabulo(const char *str, int pos, struct vocabulo **head)
 		aux = criaVocabulo(str, pos);
 		aux->prox = (*head);
 
-		*head = novoNodo;
+		*head = aux;
 	}
 	else if (!strcmp ((*head)->str, str)) // se as palavras sao iguais
 	{
